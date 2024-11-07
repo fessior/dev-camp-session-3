@@ -1,7 +1,12 @@
+import mongoose from 'mongoose';
 import { createApp } from './app';
 import { config } from './config';
 
 async function bootstrap() {
+  /* Try to establish database connection first */
+  await mongoose.connect(config.dbConnString);
+  console.log('Database connected successfully');
+
   /* Start server based on app and listen on pre-configured port */
   const port = config.port;
   const app = await createApp();
