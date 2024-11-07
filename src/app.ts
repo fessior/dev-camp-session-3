@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import compression from 'compression';
 import { exampleRouter } from './routes/example';
+import { defaultValueMiddleware } from './utils';
 
 export async function createApp(): Promise<Express> {
   const app = express();
@@ -20,8 +21,9 @@ export async function createApp(): Promise<Express> {
     }),
   );
   app.use(cors());
+  app.use(defaultValueMiddleware);
 
-  /* Apply routes */
+  /* Apply API routes */
   app.use('/example', exampleRouter);
 
   return app;
