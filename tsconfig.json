@@ -1,6 +1,7 @@
 {
   "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "require": ["tsconfig-paths/register"],
+    "files": true
   },
   "compilerOptions": {
     "module": "CommonJS",
@@ -24,6 +25,9 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "typeRoots": ["node_modules/@types", "src/typings"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
