@@ -3,4 +3,5 @@ export const config = {
   dbConnString: 'mongodb://db:27017',
   jwtSecret: 'my-secret',
   mongooseDebug: false,
+  saltRounds: 10,
 } as const;

@@ -17,16 +17,18 @@ export async function login(req: Request, res: Response) {
     const { username, password: plainTextPassword } = req.body as LoginBody;
     const user = await UserModel.findOne({ username });
     if (!user) {
-      return res.status(HttpStatus.NotFound).json({
+      res.status(HttpStatus.NotFound).json({
         message: 'User not found',
       });
+      return;
     }
     // Verify password given by user
     const isPasswordMatch = await compare(plainTextPassword, user.password);
     if (!isPasswordMatch) {
-      return res.status(HttpStatus.Unauthorized).json({
+      res.status(HttpStatus.Unauthorized).json({
         message: 'Invalid password',
       });
+      return;
     }
     // Login successful, let's sign a token for this user
     const tokenData: TokenData = {
@@ -34,9 +36,9 @@ export async function login(req: Request, res: Response) {
       userId: user._id.toString(),
       name: user.name,
     };
-    return res.status(HttpStatus.OK).json({ token: signJwtToken(tokenData) });
+    res.status(HttpStatus.OK).json({ token: signJwtToken(tokenData) });
   } catch (err) {
-    return res.status(HttpStatus.InternalServerError).json({
+    res.status(HttpStatus.InternalServerError).json({
       message: err.message,
     });
   }

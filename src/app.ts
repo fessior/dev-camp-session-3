@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import compression from 'compression';
 import bodyParser from 'body-parser';
+import { authRouter } from './routes/auth';
 
 export async function createApp(): Promise<Express> {
   const app = express();
@@ -23,6 +24,7 @@ export async function createApp(): Promise<Express> {
   app.use(bodyParser.json());
 
   /* Apply API routes */
+  app.use('/auth', authRouter);
 
   return app;
 }

@@ -21,12 +21,12 @@ export function authMiddleware(
 ) {
   const authJwt = getAuthToken(req);
   if (!authJwt) {
-    return res.status(HttpStatus.Unauthorized).end();
+    res.status(HttpStatus.Unauthorized).end();
   }
   try {
     req.token = verifyJwtToken(authJwt);
     next();
   } catch (err) {
-    return res.status(HttpStatus.Unauthorized).end();
+    res.status(HttpStatus.Unauthorized).end();
   }
 }
