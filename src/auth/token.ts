@@ -1,5 +1,5 @@
 import { config } from '@/config';
-import { JwtPayload, sign, verify } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 export type TokenData = {
   userId: string;
