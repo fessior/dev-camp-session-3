@@ -4,6 +4,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import { authRouter } from './routes/auth';
 import { meRouter } from './routes/me';
+import { todoRouter } from './routes/todo';
 
 export async function createApp(): Promise<Express> {
   const app = express();
@@ -27,6 +28,7 @@ export async function createApp(): Promise<Express> {
   /* Apply API routes */
   app.use('/auth', authRouter);
   app.use('/me', meRouter);
+  app.use('/todos', todoRouter);
 
   return app;
 }

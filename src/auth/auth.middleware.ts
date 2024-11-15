@@ -27,6 +27,7 @@ export function authMiddleware(
     req.token = verifyJwtToken(authJwt);
     next();
   } catch (err) {
+    console.error(err);
     res.status(HttpStatus.Unauthorized).end();
   }
 }
