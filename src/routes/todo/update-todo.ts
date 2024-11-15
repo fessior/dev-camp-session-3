@@ -45,7 +45,6 @@ function mergeUpdateTodoItemBody(todo: Todo, body: UpdateTodoItemBody) {
 
 export async function updateTodoItem(req: Request, res: Response) {
   try {
-    const { title, description } = req.body as UpdateTodoItemBody;
     const { username } = req.token;
     const user = await UserModel.findOne({ username });
     if (!user) {
