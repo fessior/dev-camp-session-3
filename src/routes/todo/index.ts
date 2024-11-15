@@ -4,6 +4,7 @@ import { createTodoItem, createTodoItemSchema } from './create-todo';
 import { bodyValidation } from '@/utils/body-validation';
 import { updateTodoItem, updateTodoItemSchema } from './update-todo';
 import { getPaginatedTodoItems } from './get-todo';
+import { bulkInsertTodoItems } from './bulk-insert';
 
 const todoRouter = Router();
 
@@ -13,6 +14,7 @@ todoRouter.post(
   bodyValidation(createTodoItemSchema),
   createTodoItem,
 );
+todoRouter.post('/bulk', authMiddleware, bulkInsertTodoItems);
 
 todoRouter.patch(
   '/:id',
