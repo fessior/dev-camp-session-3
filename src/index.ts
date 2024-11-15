@@ -3,6 +3,9 @@ import { createApp } from './app';
 import { config } from './config';
 
 async function bootstrap() {
+  /* Set some mongoose settings */
+  mongoose.set('debug', config.mongooseDebug);
+
   /* Try to establish database connection first */
   await mongoose.connect(config.dbConnString);
   console.log('Database connected successfully');

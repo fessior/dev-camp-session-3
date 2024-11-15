@@ -6,7 +6,6 @@ declare global {
       user: User;
     }
     interface User {
-      isAuthenticated: boolean;
       token: TokenData;
     }
   }
